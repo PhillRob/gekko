@@ -51,12 +51,12 @@ Twitter.prototype.processCandle = function(candle, done) {
 };
 
 Twitter.prototype.processAdvice = function(advice) {
-	if (advice.recommendation == "soft" && twitterConfig.muteSoft) return;
-	var text = [
-        'New  ', config.watch.asset, ' trend. Attempting to ',
+        if (advice.recommendation == "soft" && twitterConfig.muteSoft) return;
+        var text = [
+        'New #', config.watch.asset, ' trend detected by #gekkobot ,'config.tradingAdvisor.method,' strategy. Advice to ',
         advice.recommendation == "short" ? "sell" : "buy",
-        ' @',
-        this.price,
+        ' at ',
+        this.price," ",config.watch.currency," on #",config.watch.exchange,
     ].join('');
 
     this.mail(text);
